@@ -10,7 +10,7 @@
  * Author URI:        https://profiles.wordpress.org/kishanjasani
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       wc-product-block
+ * Text Domain:       wc-products-block
  *
  * @package           kishanjasani
  */

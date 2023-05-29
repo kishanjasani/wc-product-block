@@ -1,16 +1,55 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "kishanjasani/wc-product-block",
+  "name": "kishanjasani/wc-products-block",
   "version": "0.1.0",
-  "title": "Wc Product Block",
+  "title": "Latest Products",
   "category": "widgets",
-  "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "icon": "admin-post",
+  "description": "Latest Products Grid block to render a grid with latest products.",
+  "keywords": [
+    "products",
+    "latest",
+    "posts"
+  ],
   "supports": {
     "html": false
   },
-  "textdomain": "wc-product-block",
+  "attributes": {
+    "grid_gap": {
+      "type": "number",
+      "default": 5
+    },
+    "sale_tag": {
+      "type": "boolean",
+      "default": true
+    },
+    "product_title": {
+      "type": "boolean",
+      "default": true
+    },
+    "product_price": {
+      "type": "boolean",
+      "default": true
+    },
+    "add_to_cart": {
+      "type": "boolean",
+      "default": true
+    },
+    "product_title_color": {
+      "type": "string"
+    },
+    "product_price_color": {
+      "type": "string"
+    },
+    "add_to_cart_btn_text_color": {
+      "type": "string"
+    },
+    "add_to_cart_btn_bg_color": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wc-products-block",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

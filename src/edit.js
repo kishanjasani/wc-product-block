@@ -34,7 +34,7 @@ export default function Edit() {
 		<p { ...useBlockProps() }>
 			{ __(
 				'Wc Product Block – hello from the editor!',
-				'wc-product-block'
+				'wc-products-block'
 			) }
 		</p>
 	);
