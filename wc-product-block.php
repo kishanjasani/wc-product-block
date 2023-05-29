@@ -15,6 +15,20 @@
  * @package           kishanjasani
  */
 
+add_action( 'admin_notices', 'kj_is_woocommerce_plugin_active' );
+
+function kj_is_woocommerce_plugin_active() {
+	// Check if WooCommerce is active.
+	if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+		?>
+		<div class='notice notice-error is-dismissible'>
+			<p><?php esc_html_e( 'Please install WooCommerce to activate this plugin!', 'wc-products-block' ); ?></p>
+		</div>
+		<?php
+	}
+}
+
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued

@@ -3,6 +3,10 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
+if ( ! class_exists( 'WC_Product_Query' ) ) {
+	return;
+}
+
 $query = new WC_Product_Query(
 	[
 		'limit'   => 20,
@@ -26,17 +30,17 @@ $latest_products = $query->get_products();
 		// Output product details
 		echo '<li>';
 		echo '<div class="product">';
-		echo $product_image;
-		if ( $product->is_on_sale() && $attributes['sale_tag'] ) {
-			echo '<span class="onsale">' . esc_html__( 'Sale!', 'wc-products-block' ) . '</span>';
-		}
+			echo $product_image;
+			if ( $product->is_on_sale() && $attributes['sale_tag'] ) {
+				echo '<span class="onsale">' . esc_html__( 'Sale!', 'wc-products-block' ) . '</span>';
+			}
 		echo '</div>';
 		if ( $attributes['product_title'] ) {
-			printf( '<div style="color:%s;">%s</div>', $attributes['product_title_color'], $product_name );
+			printf( '<h3 style="color:%s;">%s</h3>', $attributes['product_title_color'], $product_name );
 		}
 
 		if ( $attributes['product_price'] ) {
-			printf( '<div style="color:%s;">%s</div>', $attributes['product_price_color'], $product_price );
+			printf( '<p style="color:%s;">%s</p>', $attributes['product_price_color'], $product_price );
 		}
 
 		if ( $attributes['add_to_cart'] ) {

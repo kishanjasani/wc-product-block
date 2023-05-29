@@ -6,8 +6,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-kishanjasani-wc-products-block {
-  border: 1px dotted #f00;
+.wp-block-kishanjasani-wc-products-block h3 {
+  margin: 0;
+  padding: 0;
+}
+.wp-block-kishanjasani-wc-products-block li {
+  list-style: none;
 }
 
 /*# sourceMappingURL=index.css.map*/

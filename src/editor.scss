@@ -5,5 +5,13 @@
  */
 
 .wp-block-kishanjasani-wc-products-block {
-	border: 1px dotted #f00;
+
+	h3 {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
 }
