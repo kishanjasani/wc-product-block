@@ -5,7 +5,7 @@
 
 $query = new WC_Product_Query(
 	[
-		'limit'   => 10,
+		'limit'   => 20,
 		'orderby' => 'date',
 		'order'   => 'DESC',
 	]
@@ -17,19 +17,58 @@ $latest_products = $query->get_products();
 	<?php
 	foreach ( $latest_products as $product ) {
 		// Access product information
-		$product_id         = $product->get_id();
-		$product_name       = $product->get_name();
-		$product_name       = $product_name ? $product_name : __( '(No title)', 'wc-products-block' );
-		$product_sale_price = $product->get_sale_price();
-		$product_reg_price  = $product->get_regular_price();
-		$product_price      = ! empty( $product_sale_price ) ? wc_format_sale_price( $product_reg_price, $product_sale_price ) : wc_price( $product_reg_price );
-		$product_image      = $product->get_image();
+		$product_id    = $product->get_id();
+		$product_name  = $product->get_name();
+		$product_name  = $product_name ? $product_name : __( '(No title)', 'wc-products-block' );
+		$product_price = $product->get_price_html();
+		$product_image = $product->get_image();
 
 		// Output product details
 		echo '<li>';
-		echo '<div>' . $product_image . '</div>';
-		echo '<div>' . $product_name . '</div>';
-		echo '<div>' . $product_price . '</div>';
+		echo '<div class="product">';
+		echo $product_image;
+		if ( $product->is_on_sale() && $attributes['sale_tag'] ) {
+			echo '<span class="onsale">' . esc_html__( 'Sale!', 'wc-products-block' ) . '</span>';
+		}
+		echo '</div>';
+		if ( $attributes['product_title'] ) {
+			printf( '<div style="color:%s;">%s</div>', $attributes['product_title_color'], $product_name );
+		}
+
+		if ( $attributes['product_price'] ) {
+			printf( '<div style="color:%s;">%s</div>', $attributes['product_price_color'], $product_price );
+		}
+
+		if ( $attributes['add_to_cart'] ) {
+			printf(
+				'<a href="%s" data-quantity="1" class="%s" %s style="background-color:%s; color:%s;">%s</a>',
+				esc_url( $product->add_to_cart_url() ),
+				esc_attr(
+					implode(
+						' ',
+						array_filter(
+							[
+								'button',
+								'product_type_' . $product->get_type(),
+								$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+								$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+							]
+						)
+					)
+				),
+				wc_implode_html_attributes(
+					[
+						'data-product_id'  => $product->get_id(),
+						'data-product_sku' => $product->get_sku(),
+						'aria-label'       => $product->add_to_cart_description(),
+						'rel'              => 'nofollow',
+					]
+				),
+				$attributes['add_to_cart_btn_bg_color'],
+				$attributes['add_to_cart_btn_text_color'],
+				esc_html( $product->add_to_cart_text() )
+			);
+		}
 		echo '</li>';
 	}
 	?>

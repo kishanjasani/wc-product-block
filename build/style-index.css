@@ -16,6 +16,26 @@
   list-style-type: none;
   padding: 0 20px;
 }
+.wp-block-kishanjasani-wc-products-block li {
+  padding: 10px;
+}
+.wp-block-kishanjasani-wc-products-block li img {
+  width: 100%;
+}
+.wp-block-kishanjasani-wc-products-block li > * {
+  padding-bottom: 10px;
+}
+.wp-block-kishanjasani-wc-products-block li .product {
+  position: relative;
+}
+.wp-block-kishanjasani-wc-products-block li .onsale {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px 10px;
+}
 @media (min-width: 460px) {
   .wp-block-kishanjasani-wc-products-block {
     grid-template-columns: repeat(2, 1fr);
